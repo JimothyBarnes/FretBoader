@@ -26,3 +26,5 @@ Open the URL that Vite prints (usually http://localhost:5173).
   to a pluck synth as a last resort.
 - If you run this locally in Chrome/Edge/Safari, the sampler should load
   and sound like a guitar.
+
+test
