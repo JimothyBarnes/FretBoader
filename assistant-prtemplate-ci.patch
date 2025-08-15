@@ -1,0 +1,62 @@
+From 2f8e7dfe0f3b4b2a0b3d6a2c9cb2e7a1e5d12345 Mon Sep 17 00:00:00 2001
+Subject: chore: add PR template and CI
+
+diff --git a/.github/pull_request_template.md b/.github/pull_request_template.md
+new file mode 100644
+index 0000000..7f8a6b1
+--- /dev/null
++++ b/.github/pull_request_template.md
+@@ -0,0 +1,24 @@
++## Summary
++Describe what this PR changes and why.
++
++## Expected behavior / UX
++- What should the user see or be able to do after this change?
++
++## Checklist
++- [ ] I described the expected behavior above
++- [ ] I tested locally (`npm run dev` or `npm run build`)
++- [ ] I did **not** change tests unless they were clearly wrong
++- [ ] No unrelated changes are bundled in this PR
++
++## Screenshots / Notes (optional)
++- Before/after screenshots or extra context, if helpful.
++
++## Follow-ups (optional)
++- Any next steps that should happen in a separate PR.
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+new file mode 100644
+index 0000000..1b2c3d4
+--- /dev/null
++++ b/.github/workflows/ci.yml
+@@ -0,0 +1,28 @@
++name: CI
++
++on:
++  pull_request:
++    branches: [ main ]
++
++jobs:
++  build:
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout
++        uses: actions/checkout@v4
++
++      - name: Use Node 18
++        uses: actions/setup-node@v4
++        with:
++          node-version: '18'
++          cache: 'npm'
++
++      - name: Install deps
++        run: npm ci
++
++      - name: Build
++        run: npm run build
++
++      # Uncomment later if we add tests:
++      # - name: Test
++      #   run: npm test --if-present
+-- 
+2.39.3
